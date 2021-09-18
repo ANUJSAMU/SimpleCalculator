@@ -1,23 +1,32 @@
 class SimpleCalculator
 
-    def initialize(num1, num2)
-        @num1 = num1
-        @num2 = num2
+    def initialize(workingArray)
+        @workingArray = workingArray
+    end
+
+    def checkItsNumber
+        check = @workingArray.all?{ |num| num.is_a?(Numeric)}? true : 'Please enter Numeric values'
     end
 
     def add
-        @num1+@num2
+        result = @workingArray.sum
     end
 
-    def substract
-        @num1-@num2
+    def substract    
+        dif = @workingArray[0]
+        @workingArray.drop(1).each{|num| dif -= num}
+        result = dif
     end
 
     def multiply
-        @num1*@num2
+        mult = @workingArray[0]
+        @workingArray.drop(1).each{|num| mult *= num}
+        result = mult
     end
 
     def divide
-        @num1/@num2
+        div = @workingArray[0].to_f
+        @workingArray.drop(1).each{|num| div /= num}
+        result = div
     end
 end
